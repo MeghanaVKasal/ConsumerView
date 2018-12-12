@@ -49,7 +49,7 @@ public class FoodDetailActivity extends AppCompatActivity{
         mMapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Hey",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"Hey",Toast.LENGTH_SHORT).show();
                 Uri gmmIntentUri = Uri.parse("google.navigation:q="+ mLatitude+","+mLongitude +"&mode=d");
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");

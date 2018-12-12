@@ -27,6 +27,8 @@ import com.google.firebase.firestore.Query;
 import com.maucassignments.meghana.getitdone.R;
 import com.maucassignments.meghana.getitdone.model.Post;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 //import me.zhanghai.android.materialratingbar.MaterialRatingBar;
@@ -61,7 +63,8 @@ public class FooditemsAdapter extends FirestoreAdapter<FooditemsAdapter.ViewHold
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-
+        @BindView(R.id.food_items)
+        TextView foodItemsView;
         @BindView(R.id.food_address)
         TextView foodAddressView;
         @BindView(R.id.food_producerName)
@@ -76,6 +79,14 @@ public class FooditemsAdapter extends FirestoreAdapter<FooditemsAdapter.ViewHold
                          final OnFoodSelectedListener listener) {
             Post postobj = snapshot.toObject(Post.class);
 
+            List<String> foodList= ((Post) postobj).getTags();
+            String foodString;
+            if(foodList != null) {
+               foodString = String.join(" ", foodList);
+            }else{
+                foodString = " ";
+            }
+            foodItemsView.setText(foodString);
             foodAddressView.setText(postobj.getAddress());
             foodProducerNameView.setText(postobj.getProducer());
 
